@@ -3,7 +3,7 @@ import { Button, Form, Image } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { FileUp } from '../helpers/FileUp';
 import { useForm } from '../Hooks/useForm';
-import { addAsync } from '../redux/actions/actionPlantas';
+import { addAsync } from '../redux/actions/actionPokemon';
 import List from './List';
 
 const Add = () => {
@@ -14,12 +14,12 @@ const Add = () => {
         codigo: '',
         descripcion: '',
         tipo: '',
-        precio: '',
+        peso: '',
         foto: ''
         
     })
   
-    const {nombre, codigo, descripcion, tipo, precio, foto} = values
+    const {nombre, codigo, descripcion, tipo, peso, foto} = values
   
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -48,20 +48,20 @@ const Add = () => {
         <div>
              <Form onSubmit={handleSubmit} margin={50}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>pokmeon</Form.Label>
+                    <Form.Label>Nombre de Pokémon</Form.Label>
                     <Form.Control type="text" name="nombre" placeholder="" value={nombre} onChange={handleInputChange} />
-
-                    <Form.Label>pokemon</Form.Label>
-                    <Form.Control type="text" name="descripcion" placeholder="" value={descripcion} onChange={handleInputChange} />
 
                     <Form.Label>Codigo</Form.Label>
                     <Form.Control type="text" name="codigo" placeholder="" value={codigo} onChange={handleInputChange} />
 
-                    <Form.Label>pokemon</Form.Label>
+                    <Form.Label>Descripcion</Form.Label>
+                    <Form.Control type="text" name="descripcion" placeholder="" value={descripcion} onChange={handleInputChange} />
+
+                    <Form.Label>Tipo</Form.Label>
                     <Form.Control type="text" name="tipo" placeholder="" value={tipo} onChange={handleInputChange} />
 
-                    <Form.Label>Pokemon</Form.Label>
-                    <Form.Control type="text" name="precio" placeholder="" value={precio} onChange={handleInputChange} />
+                    <Form.Label>Peso</Form.Label>
+                    <Form.Control type="text" name="peso" placeholder="" value={peso} onChange={handleInputChange} />
                 
 
                     <Form.Label>Imagen</Form.Label>

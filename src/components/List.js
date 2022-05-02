@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Image, Table } from 'react-bootstrap';
 import ReactImageMagnify from 'react-image-magnify';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteAsync, listAsyn } from '../redux/actions/actionPlantas';
+import { deleteAsync, listAsyn } from '../redux/actions/actionPokemon';
 import Edit from './Edit';
 
 const List = () => {
@@ -11,7 +10,7 @@ const List = () => {
     const [modal, setModal] = useState(false)
     const [enviarDatosModal, setEnviarDatosModal] = useState([])
 
-    const { plantas } = useSelector(store => store.plantas)
+    const { pokemones } = useSelector(store => store.pokemones)
 
     useEffect(() => {
         dispatch(listAsyn())
@@ -19,22 +18,22 @@ const List = () => {
 
     const editar = (codigo) => {
         //--------t=conseguir los datos de ese objeto con ese codigo--------------//
-        const traerLaPlanta = plantas.find(t => t.codigo === codigo)
+        const traerelpokemon= pokemones.find(t => t.codigo === codigo)
 
         setModal(true)
-        setEnviarDatosModal(traerLaPlanta)
+        setEnviarDatosModal(traerelpokemon)
 
 
     }
 
     return (
         <div>
-            <Table>
+            <table>
                 <thead>
                 </thead>
                 <tbody>
                     {
-                        plantas.map((p, index) => (
+                        pokemones.map((p, index) => (
                             <tr key={index}>
                                 <td>
                                     <ReactImageMagnify {...{
@@ -53,19 +52,19 @@ const List = () => {
                                 <td>{p.nombre}</td>
                                 <td>{p.codigo}</td>
                                 <td>{p.tipo}</td>
-                                <td>{p.precio}</td>
+                                <td>{p.peso}</td>
                                 <td>
-                                    <Button margin={10} onClick={() => dispatch(deleteAsync(p.codigo))}> <Image onClick={() => dispatch(deleteAsync(p.codigo))} width={20} src='https://res.cloudinary.com/danimel/image/upload/v1646015682/trash_2_vcdean.png' /> </Button>
 
-                                    <Button margin={10} onClick={() => editar(p.codigo)}> <Image onClick={() => editar(p.codigo)} width={20} src='https://res.cloudinary.com/danimel/image/upload/v1646015685/edit_nh7sll.png' /></Button>
+                                    <button  margin={10} onClick={() => dispatch(deleteAsync(p.codigo))}> <image onClick={() => dispatch(deleteAsync(p.codigo))} width={20} src='' /> eliminar </button>
+                                    <button margin={10} onClick={() => editar(p.codigo)}> <image onClick={() => editar(p.codigo)} width={20} src='' />editar </button>
+
                                 </td>
-
                             </tr>
                         ))
                     }
 
                 </tbody>
-            </Table>
+            </table>
             {
                 modal === true ? <Edit modal={enviarDatosModal} /> : ''
             }

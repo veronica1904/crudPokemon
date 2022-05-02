@@ -1,35 +1,9 @@
 import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
 import { baseDato } from "../../Firebase/firebaseConfig"
-import { typesPlantas } from "../types/types"
-
-
-
-
-//-------------agregar Formik---------------//
-/*export const formikAsync =(planta)=>{
-    return(dispatch)=>{
-        addDoc(collection(baseDato, "formulario"), planta)
-        .then(resp =>{
-            dispatch(formikSync(planta))
-          //  dispatch(listAsyn())
-        })
-        .catch(error=>{
-            console.warn(error);
-        })
-}
-}
-
-export const formikSync =(planta)=>{
-    return{
-        type: typesPlantas.addformik,
-        payload: planta,
-    }
-}*/
-
-
+import { typesPokemones } from "../types/types"
 
 //---------------------Edit-----------//
-export const editAsync = (codigo, planta)=>{
+export const editAsync = (codigo, pokemon)=>{
    // console.log(codigo, planta)
     return async (dispatch)=>{
         const  colleccionTraer = collection(baseDato, "crudPokemon")
@@ -41,9 +15,9 @@ export const editAsync = (codigo, planta)=>{
         })
         console.log(id)
         const documenRef = doc(baseDato, "crudPokemon", id)
-       await updateDoc(documenRef, planta)
+       await updateDoc(documenRef, pokemon)
         .then(resp => {
-            dispatch(editSync(planta))
+            dispatch(editSync(pokemon))
          
             console.log(resp)
          })       
@@ -53,10 +27,10 @@ export const editAsync = (codigo, planta)=>{
 }
 
 
-export const editSync = (planta)=>{
+export const editSync = (pokemon)=>{
     return{
-        type: typesPlantas.editSync,
-        payload: planta
+        type: typesPokemones.editSync,
+        payload: pokemon
     }
    
 }
@@ -78,7 +52,7 @@ export const deleteAsync = (codigo)=>{
 
 export const deleteSync = (codigo)=>{
     return{
-        type: typesPlantas.delete,
+        type: typesPokemones.delete,
         payload: codigo
     }
    
@@ -88,33 +62,33 @@ export const deleteSync = (codigo)=>{
 export const listAsyn =()=>{
     return async (dispatch)=>{
         const  colleccionTraer = await getDocs(collection(baseDato , "crudPokemon"))
-        const plantas = []
+        const pokemones = []
         colleccionTraer.forEach((doc)=>{
-            plantas.push({
+            pokemones.push({
                 ...doc.data()
                 
 
             })
         })
-        dispatch(listSync(plantas))
+        dispatch(listSync(pokemones))
         
     }
 }
 
-export const listSync = (planta)=>{
+export const listSync = (pokemon)=>{
     return{
-        type: typesPlantas.list ,
-        payload: planta 
+        type: typesPokemones.list ,
+        payload: pokemon 
     }
    
 }
 
 //-------------agregar---------------//
-export const addAsync =(planta)=>{
+export const addAsync =(pokemon)=>{
     return(dispatch)=>{
-        addDoc(collection(baseDato, "crudPokemon"), planta)
+        addDoc(collection(baseDato, "crudPokemon"), pokemon)
         .then(resp =>{
-            dispatch(addSync(planta))
+            dispatch(addSync(pokemon))
           //  dispatch(listAsyn())
         })
         .catch(error=>{
@@ -123,14 +97,12 @@ export const addAsync =(planta)=>{
 }
 }
 
-export const addSync =(planta)=>{
+export const addSync =(pokemon) => {
     return{
-        type: typesPlantas.add,
-        payload: planta,
+        type: typesPokemones.add,
+        payload: pokemon,
     }
 }
-
-
 
 //--------------Agregar desde formik---------------------//
 
@@ -149,7 +121,7 @@ export const addFormikAsync=(user)=>{
 
 export const addFormikSync =(user)=>{
     return{
-        type: typesPlantas.addFormik,
+        type: typesPokemones.addFormik,
         payload: user,
     }
 }

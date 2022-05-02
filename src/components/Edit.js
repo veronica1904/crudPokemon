@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useForm } from '../Hooks/useForm';
-import { editAsync } from '../redux/actions/actionPlantas';
+import { editAsync } from '../redux/actions/actionPokemon';
 
 const Edit = ({ modal }) => {
 
@@ -38,16 +38,16 @@ const Edit = ({ modal }) => {
                     <Modal.Body>
                         <Form onSubmit={()=>handleSubmit()}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Label>pokemon</Form.Label>
+                                <Form.Label>Nombre</Form.Label>
                                 <Form.Control type="text" name="nombre" placeholder="" value={nombre} onChange={handleInputChange} />
 
-                                <Form.Label>pokmeon</Form.Label>
+                                <Form.Label>Descripción</Form.Label>
                                 <Form.Control type="text" name="descripcion" placeholder="" value={descripcion} onChange={handleInputChange} />
 
-                                <Form.Label>pokemon</Form.Label>
+                                <Form.Label>Codigo</Form.Label>
                                 <Form.Control type="text" name="codigo" placeholder="" value={codigo} onChange={handleInputChange} />
 
-                                <Form.Label>pokmeon</Form.Label>
+                                <Form.Label>Tipo</Form.Label>
                                 <Form.Control type="text" name="precio" placeholder="" value={precio} onChange={handleInputChange} />
 
                             </Form.Group>

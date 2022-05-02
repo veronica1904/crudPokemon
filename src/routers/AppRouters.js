@@ -1,7 +1,6 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Login from '../components/Login';
 import DashboardRoute from './DashboardRoute';
 import PrivateRoters from './PrivateRoters';
 import PublicRouters from './PublicRouters';
@@ -34,16 +33,10 @@ if(checking){
         <BrowserRouter>
              <Routes>
 
-             <Route path="/login" element={
-             <PublicRouters isAut={isLoggedIn}>
-                    <Login/>
-             </PublicRouters>} />
 
                 <Route path="/*" element={ <PrivateRoters isAut={isLoggedIn}>
               <DashboardRoute/>
                 </PrivateRoters>} /> 
-             
-             
             </Routes>
         </BrowserRouter>
     );
